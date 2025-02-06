@@ -9,16 +9,20 @@ function Book(title, author, pages, read){
     this.read = read;
 }
 
+const hp = new Book('Harry Potter and the Chamber of secrets', 'J.K Rowling', 342, 'not read');
+const bat = new Book('Batman: The Killing Joke', 'John Kler', 234, 'read');
+library.push(hp);
+library.push(bat);
+
 //function to create a book and store in array
 function addToLibrary(title, author, pages, read){
     const newBook = new Book(title, author, pages, read);
-    library.add(newBook);
+    library.push(newBook);
 }
 
 //loop through the array and display each book
 function displayAll(library){
     const container = document.querySelector('#library-container');
-    container.innerHTML = 'This is the inner content';
 
     for(let iter = 0; iter < library.length; iter++){
         let book = library[iter];
@@ -44,8 +48,41 @@ function displayAll(library){
     }
 }
 
-const hp = new Book('Harry Potter and the Chamber of secrets', 'J.K Rowling', 342, 'not read');
-const bat = new Book('Batman: The Killing Joke', 'John Kler', 234, 'read');
-library.push(hp);
-library.push(bat);
+const container = document.querySelector('#library-container');
+
+//Create a table with headers
+const table = document.createElement('table');
+table.border = '1';
+container.appendChild(table);
+    
+const thead = document.createElement('thead');
+table.appendChild(thead);
+
+const headers = document.createElement('tr');
+thead.appendChild(headers);
+
+const header1 = document.createElement('th');
+const header2 = document.createElement('th');
+const header3 = document.createElement('th');
+const header4 = document.createElement('th');
+
+header1.innerHTML = "<b>Title</b>";
+header2.innerHTML = "<b>Author</b>";
+header3.innerHTML = "<b>Pages</b>";
+header4.innerHTML = "<b>Read</b>";
+
+headers.appendChild(header1);
+headers.appendChild(header2);
+headers.appendChild(header3);
+headers.appendChild(header4);
+
+const tableBody = document.createElement('tbody');
+table.appendChild(tableBody);
+
+const row1 = document.createElement('tr');
+tableBody.appendChild(row1);
+
+const row2 = document.createElement('tr');
+tableBody.appendChild(row2);
+
 displayAll(library);
