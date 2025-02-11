@@ -25,26 +25,29 @@ function displayAll(library){
     const container = document.querySelector('#library-container');
 
     for(let iter = 0; iter < library.length; iter++){
+        
+        //container.innerHTML = ""; 
+        
         let book = library[iter];
-        const bookCard = document.createElement('div');
-        bookCard.classList.add('book-card');
-        container.appendChild(bookCard);
+        const bookTable = document.createElement('div');
+        bookTable.classList.add('book-table');
+        container.appendChild(bookTable);
 
         let authorName = document.createElement('h3');
         authorName.textContent = book.author;
-        bookCard.appendChild(authorName);
+        bookTable.appendChild(authorName);
 
         let bookTitle = document.createElement('p');
         bookTitle.textContent = book.title;
-        bookCard.appendChild(bookTitle);
+        bookTable.appendChild(bookTitle);
 
         let bookPages = document.createElement('p');
         bookPages.textContent = book.pages;
-        bookCard.appendChild(bookPages);
+        bookTable.appendChild(bookPages);
 
         let bookRead = document.createElement('p');
         bookRead.textContent = book.read;
-        bookCard.appendChild(bookRead);
+        bookTable.appendChild(bookRead);
     }
 }
 
