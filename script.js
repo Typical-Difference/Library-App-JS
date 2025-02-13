@@ -24,30 +24,29 @@ function addToLibrary(title, author, pages, read){
 function displayAll(library){
     const container = document.querySelector('#library-container');
 
+    const tableBody = document.querySelector('#table-body');
+
     for(let iter = 0; iter < library.length; iter++){
-        
         //container.innerHTML = ""; 
-        
         let book = library[iter];
-        const bookTable = document.createElement('div');
-        bookTable.classList.add('book-table');
-        container.appendChild(bookTable);
+        
+        const row = document.createElement('tr');
+        tableBody.appendChild(row);
 
-        let authorName = document.createElement('h3');
-        authorName.textContent = book.author;
-        bookTable.appendChild(authorName);
+        const d1 = document.createElement('td');
+        const d2 = document.createElement('td');
+        const d3 = document.createElement('td');
+        const d4 = document.createElement('td');
 
-        let bookTitle = document.createElement('p');
-        bookTitle.textContent = book.title;
-        bookTable.appendChild(bookTitle);
+        d1.innerHTML = book.title;
+        d2.innerHTML = book.author;
+        d3.innerHTML = book.pages;
+        d4.innerHTML = book.read;
 
-        let bookPages = document.createElement('p');
-        bookPages.textContent = book.pages;
-        bookTable.appendChild(bookPages);
-
-        let bookRead = document.createElement('p');
-        bookRead.textContent = book.read;
-        bookTable.appendChild(bookRead);
+        row.appendChild(d1);
+        row.appendChild(d2);
+        row.appendChild(d3);
+        row.appendChild(d4);
     }
 }
 
@@ -80,12 +79,7 @@ headers.appendChild(header3);
 headers.appendChild(header4);
 
 const tableBody = document.createElement('tbody');
+tableBody.id = 'table-body';
 table.appendChild(tableBody);
-
-const row1 = document.createElement('tr');
-tableBody.appendChild(row1);
-
-const row2 = document.createElement('tr');
-tableBody.appendChild(row2);
 
 displayAll(library);
