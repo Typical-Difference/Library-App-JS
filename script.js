@@ -39,10 +39,10 @@ function displayAll(library){
         const d3 = document.createElement('td');
         const d4 = document.createElement('td');
 
-        d1.innerHTML = book.title;
-        d2.innerHTML = book.author;
-        d3.innerHTML = book.pages;
-        d4.innerHTML = book.read;
+        d1.textContent = book.title;
+        d2.textContent = book.author;
+        d3.textContent = book.pages;
+        d4.textContent = book.read;
 
         row.appendChild(d1);
         row.appendChild(d2);
@@ -60,6 +60,16 @@ document.querySelector('#input-form').addEventListener("submit", function(event)
 
     addToLibrary(title, author, pages, read);
     displayAll(library);
+    document.querySelector('dialog').close();
+    document.getElementById('input-form').reset();
+});
+
+document.querySelector('#form-close').addEventListener("click", function(){
+    document.querySelector('dialog').close();
+});
+
+document.querySelector('#new-book').addEventListener("click", function(){
+    document.querySelector('dialog').showModal();
 });
 
 const container = document.querySelector('#library-container');
