@@ -27,28 +27,12 @@ function displayAll(library){
     const tableBody = document.querySelector('#table-body');
 
     tableBody.innerHTML = "";
-    for(let iter = 0; iter < library.length; iter++){
-        //container.innerHTML = ""; 
-        let book = library[iter];
-        
+    
+    library.forEach(book => {
         const row = document.createElement('tr');
+        row.innerHTML = `<td>${book.title}</td> <td>${book.author}</td> <td>${book.pages}</td> <td>${book.read}</td>`;
         tableBody.appendChild(row);
-
-        const d1 = document.createElement('td');
-        const d2 = document.createElement('td');
-        const d3 = document.createElement('td');
-        const d4 = document.createElement('td');
-
-        d1.textContent = book.title;
-        d2.textContent = book.author;
-        d3.textContent = book.pages;
-        d4.textContent = book.read;
-
-        row.appendChild(d1);
-        row.appendChild(d2);
-        row.appendChild(d3);
-        row.appendChild(d4);
-    }
+    });
 }
 
 document.querySelector('#input-form').addEventListener("submit", function(event){
@@ -81,24 +65,10 @@ container.appendChild(table);
     
 const thead = document.createElement('thead');
 table.appendChild(thead);
+thead.innerHTML = '<tr><td><b>Title</b></td><td><b>Author</b></td><td><b>Pages</b></td><td><b>Read</b></td></tr>'
 
-const headers = document.createElement('tr');
-thead.appendChild(headers);
-
-const header1 = document.createElement('th');
-const header2 = document.createElement('th');
-const header3 = document.createElement('th');
-const header4 = document.createElement('th');
-
-header1.innerHTML = "<b>Title</b>";
-header2.innerHTML = "<b>Author</b>";
-header3.innerHTML = "<b>Pages</b>";
-header4.innerHTML = "<b>Read</b>";
-
-headers.appendChild(header1);
-headers.appendChild(header2);
-headers.appendChild(header3);
-headers.appendChild(header4);
+const tbody = document.createElement('tbody');
+table.appendChild(tbody);
 
 const tableBody = document.createElement('tbody');
 tableBody.id = 'table-body';
