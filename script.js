@@ -28,10 +28,17 @@ function displayAll(library){
 
     tableBody.innerHTML = "";
     
-    library.forEach(book => {
+    library.forEach((book, index) => {
         const row = document.createElement('tr');
-        row.innerHTML = `<td>${book.title}</td> <td>${book.author}</td> <td>${book.pages}</td> <td>${book.read}</td>`;
-        tableBody.appendChild(row);
+        row.innerHTML = `<td>${book.title}</td> <td>${book.author}</td> <td>${book.pages}</td> <td>${book.read}</td> <td><button data-index=${index} class="remove-button">Remove</button></td>`;
+        tableBody.appendChild(row);        
+    });
+    document.querySelectorAll('.remove-button').forEach(button => {
+        button.addEventListener("click", function(event){
+            const bookIndex = event.target.getAttribute('data-index');
+            library.splice(bookIndex, 1);
+            displayAll(library);
+        });
     });
 }
 
@@ -65,7 +72,7 @@ container.appendChild(table);
     
 const thead = document.createElement('thead');
 table.appendChild(thead);
-thead.innerHTML = '<tr><td><b>Title</b></td><td><b>Author</b></td><td><b>Pages</b></td><td><b>Read</b></td></tr>'
+thead.innerHTML = '<tr><td><b>Title</b></td><td><b>Author</b></td><td><b>Pages</b></td><td><b>Read</b></td><td><b>Remove</b></td></tr>'
 
 const tbody = document.createElement('tbody');
 table.appendChild(tbody);
