@@ -30,9 +30,13 @@ function displayAll(library){
     
     library.forEach((book, index) => {
         const row = document.createElement('tr');
-        row.innerHTML = `<td>${book.title}</td> <td>${book.author}</td> <td>${book.pages}</td> <td>${book.read}</td> <td><button data-index=${index} class="remove-button">Remove</button></td>`;
+        row.innerHTML = `<td>${book.title}</td> <td>${book.author}</td> <td>${book.pages}</td> <td>${book.read}</td> 
+            <td><button data-index=${index} class="remove-button">Remove</button></td> 
+            <td><button data-index=${index} class="toggle-read">Change Read</button></td>`;
         tableBody.appendChild(row);        
     });
+
+    //Delete button event listener
     document.querySelectorAll('.remove-button').forEach(button => {
         button.addEventListener("click", function(event){
             const bookIndex = event.target.getAttribute('data-index');
@@ -40,8 +44,21 @@ function displayAll(library){
             displayAll(library);
         });
     });
+
+    //Toggle read event listener
+    document.querySelectorAll('.toggle-read').forEach(button => {
+        button.addEventListener("click", function(event){
+            const bookIndex = event.target.getAttribute('data-index');
+            console.log(bookIndex);
+            const bookObj = library[bookIndex];
+            console.log(bookIndex, bookObj);
+            bookObj.toggleRead(bookObj);
+            displayAll();
+        });
+    });
 }
 
+//Input form modal - Form off by default
 document.querySelector('#input-form').addEventListener("submit", function(event){
     event.preventDefault(); //Stop page refresh upon reload.
     let title = document.getElementById('book-title').value;
@@ -55,13 +72,25 @@ document.querySelector('#input-form').addEventListener("submit", function(event)
     document.getElementById('input-form').reset();
 });
 
+//Form close button
 document.querySelector('#form-close').addEventListener("click", function(){
     document.querySelector('dialog').close();
 });
 
+//Form open button
 document.querySelector('#new-book').addEventListener("click", function(){
     document.querySelector('dialog').showModal();
 });
+
+//Prototype function to modify read attribute through event listeners
+Book.prototype.toggleRead = function(book) {
+    if(book.read === 'read'){
+        book.read = 'not read';
+    }
+    else{
+        book.read = 'read';
+    }
+}
 
 const container = document.querySelector('#library-container');
 
@@ -72,7 +101,7 @@ container.appendChild(table);
     
 const thead = document.createElement('thead');
 table.appendChild(thead);
-thead.innerHTML = '<tr><td><b>Title</b></td><td><b>Author</b></td><td><b>Pages</b></td><td><b>Read</b></td><td><b>Remove</b></td></tr>'
+thead.innerHTML = '<tr><td><b>Title</b></td><td><b>Author</b></td><td><b>Pages</b></td><td><b>Read</b></td><td><b>Remove</b></td><td><b>Modify read status</b></td></tr>'
 
 const tbody = document.createElement('tbody');
 table.appendChild(tbody);
