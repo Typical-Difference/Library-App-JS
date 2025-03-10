@@ -3,6 +3,7 @@ const library = [];
 
 //Constructor for books
 function Book(title, author, pages, read){
+    this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -22,24 +23,23 @@ function addToLibrary(title, author, pages, read){
 
 //loop through the array and display each book
 function displayAll(library){
-    const container = document.querySelector('#library-container');
-
     const tableBody = document.querySelector('#table-body');
 
     tableBody.innerHTML = "";
     
-    library.forEach((book, index) => {
+    library.forEach((book) => {
         const row = document.createElement('tr');
         row.innerHTML = `<td>${book.title}</td> <td>${book.author}</td> <td>${book.pages}</td> <td>${book.read}</td> 
-            <td><button data-index=${index} class="remove-button">Remove</button></td> 
-            <td><button data-index=${index} class="toggle-read">Change Read</button></td>`;
+            <td><button data-id=${book.id} class="remove-button">Remove</button></td> 
+            <td><button data-id=${book.id} class="toggle-read">Change Read</button></td>`;
         tableBody.appendChild(row);        
     });
 
     //Delete button event listener
     document.querySelectorAll('.remove-button').forEach(button => {
         button.addEventListener("click", function(event){
-            const bookIndex = event.target.getAttribute('data-index');
+            const bookId = event.target.getAttribute('data-id');
+            const bookIndex = library.findIndex(book => book.id === bookId);            
             library.splice(bookIndex, 1);
             displayAll(library);
         });
@@ -48,12 +48,13 @@ function displayAll(library){
     //Toggle read event listener
     document.querySelectorAll('.toggle-read').forEach(button => {
         button.addEventListener("click", function(event){
-            const bookIndex = event.target.getAttribute('data-index');
+            const bookId = event.target.getAttribute('data-id');
+            const bookIndex = library.findIndex(book => book.id === bookId);
             console.log(bookIndex);
             const bookObj = library[bookIndex];
             console.log(bookIndex, bookObj);
-            bookObj.toggleRead(bookObj);
-            displayAll();
+            bookObj.toggleRead();
+            displayAll(library);
         });
     });
 }
@@ -83,12 +84,12 @@ document.querySelector('#new-book').addEventListener("click", function(){
 });
 
 //Prototype function to modify read attribute through event listeners
-Book.prototype.toggleRead = function(book) {
-    if(book.read === 'read'){
-        book.read = 'not read';
+Book.prototype.toggleRead = function() {
+    if(this.read === 'read'){
+        this.read = 'not read';
     }
     else{
-        book.read = 'read';
+        this.read = 'read';
     }
 }
 
