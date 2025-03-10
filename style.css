@@ -1,8 +1,26 @@
 h1{
     text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Monospace', 'Courier New';
+}
+
+th{
+    text-align: center;
 }
 
 table{
+    text-align: left;
+}
+
+td > button{
+    text: center;
+}
+
+#library-container{
+    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button{
     text-align: center;
 }
