@@ -8,33 +8,42 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <h1>Odin Books</h1>
+    <h1>Library App</h1>
     <button id="new-book">New Book</button>
     <br />
     <br />
     <dialog >
         <button id="form-close" autofocus>Close</button>
-        <p>Modal form</p>
+        <p style="font-weight: bolder;"><b>Input Details</b></p>
         <form id="input-form" method="dialog">
-            <label for="book-title">Title:</label>
-            <input type="text" name="book-title" id="book-title" required />
+            <div>
+                <label for="book-title">Title:</label>
+                <input type="text" name="book-title" id="book-title" required />
+            </div>
             <br/>
-            <label for="book-author">Author:</label>
+            <div>
+                <label for="book-author">Author:</label>
             <input type="text" name="book-author" id="book-author" required />
+            </div>
             <br/>
-            <label for="book-pages">Pages:</label>
+            <div>
+                <label for="book-pages">Pages:</label>
             <input type="number" name="book-pages" id="book-pages" required />
+            </div>
             <br/>
-            <label for="book-read">Read?:</label>
-            <input type="radio" id="read-yes" name="book-read" value="read" >
-            <label for="read-yes">Yes</label>
-            <input type="radio" id="read-no" name="book-read" value="not read" >
-            <label for="read-no">No</label>
+            <div>
+                <label for="book-read">Read?:</label>
+                <input type="radio" id="read-yes" name="book-read" value="read" >
+                <label for="read-yes">Yes</label>
+                <input type="radio" id="read-no" name="book-read" value="not read" >
+                <label for="read-no">No</label>
+            </div>
             <br/>
             <button>Insert</button>
         </form>
     </dialog>
-    <div id="library-container" style="align-items: center;">
+    <!--This is the table used to store library objects-->
+    <div id="library-container">
     </div>
     <br/>
 </body>

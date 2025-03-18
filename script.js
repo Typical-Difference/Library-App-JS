@@ -102,7 +102,7 @@ container.appendChild(table);
     
 const thead = document.createElement('thead');
 table.appendChild(thead);
-thead.innerHTML = '<tr><td><b>Title</b></td><td><b>Author</b></td><td><b>Pages</b></td><td><b>Read</b></td><td><b>Remove</b></td><td><b>Modify read status</b></td></tr>'
+thead.innerHTML = '<tr><td><b>Title</b></td><td><b>Author</b></td><td><b>Pages</b></td><td id="read"><b>Read</b></td><td><b>Remove</b></td><td><b>Modify read status</b></td></tr>'
 
 const tbody = document.createElement('tbody');
 table.appendChild(tbody);
