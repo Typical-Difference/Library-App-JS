@@ -12,8 +12,10 @@ function Book(title, author, pages, read){
 
 const hp = new Book('Harry Potter and the Chamber of secrets', 'J.K Rowling', 342, 'not read');
 const bat = new Book('Batman: The Killing Joke', 'John Kler', 234, 'read');
+const coa = new Book('Computer Architecture and Organization', 'Von Neumann', '690', 'not read');
 library.push(hp);
 library.push(bat);
+library.push(coa);
 
 //function to create a book and store in array
 function addToLibrary(title, author, pages, read){
